@@ -24,7 +24,7 @@ const addBookHandler = (request, h) => {
         updatedAt,
     };
 
-    if (newBook.name === "") {
+    if (newBook.name === undefined) {
         const response = h.response({
             status: "fail",
             message: "Gagal menambahkan buku. Mohon isi nama buku",
@@ -93,7 +93,7 @@ const editBookByIdHandler = (request, h) => {
     const { name, year, author, summary, publisher, pageCount, readPage, reading } = request.payload;
     const updatedAt = new Date().toISOString();
 
-    if (name === "") {
+    if (name === undefined) {
         const response = h.response({
             status: "fail",
             message: "Gagal memperbarui buku. Mohon isi nama buku",
