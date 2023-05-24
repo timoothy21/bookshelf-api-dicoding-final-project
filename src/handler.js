@@ -71,6 +71,17 @@ const getAllBooksHandler = (request, h) => {
             },
         });
         return response;
+    } else if ("reading" in query) {
+        const book = books
+            .filter((book) => book.reading == query["reading"])
+            .map((data) => ({ id: data.id, name: data.name, publisher: data.publisher }));
+        const response = h.response({
+            status: "success",
+            data: {
+                books: book,
+            },
+        });
+        return response;
     } else {
         const book = books.map((data) => ({ id: data.id, name: data.name, publisher: data.publisher }));
         const response = h.response({
