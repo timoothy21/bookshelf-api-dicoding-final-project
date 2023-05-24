@@ -61,7 +61,9 @@ const getAllBooksHandler = (request, h) => {
     const query = request.query;
 
     if ("name" in query) {
-        const book = books.filter((book) => book.name.toLowerCase().includes(query["name"].toLowerCase()));
+        const book = books
+            .filter((book) => book.name.toLowerCase().includes(query["name"].toLowerCase()))
+            .map((data) => ({ id: data.id, name: data.name, publisher: data.publisher }));
         const response = h.response({
             status: "success",
             data: {
